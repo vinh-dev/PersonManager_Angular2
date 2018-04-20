@@ -1,0 +1,26 @@
+<p>
+  list-person works!
+</p>
+<table class="listperson">
+  <tr>
+    <th>FirstName</th>
+    <th>LastName</th>
+    <th>Birthday</th>
+    <th>Address</th>
+    <th>Sex</th>
+    <th>Edit</th>
+    <th>Delete</th>
+  </tr>
+  <tr *ngFor="let person of lstPerson">
+    <td>{{person.FirstName}}</td>
+    <td>{{person.LastName}}</td>
+    <td>{{person.Birthday}}</td>
+    <td>{{person.Address}}</td>
+    <td>{{person.Sex}}</td>
+    <td><button class="edit" title="edit Person" (click)="edit(person)">edit</button>
+    </td>
+    <td><button class="delete" title="delete Person" (click)="delete(person)">x</button>
+    </td>
+
+  </tr>
+</table>
