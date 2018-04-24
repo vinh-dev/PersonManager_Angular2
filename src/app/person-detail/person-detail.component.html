@@ -1,0 +1,57 @@
+<div class="container">
+
+  <h1>Information</h1>
+  <div *ngIf="person">
+    <form (ngSubmit)="onSubmit()" #personForm="ngForm">
+
+      <div class="form-group">
+        <label for="FirstName">FirstName</label>
+        <input type="text" class="form-control" id="FirstName" [(ngModel)]="person.FirstName" name="FirstName" #FirstName="ngModel">
+        <div [hidden]="FirstName.valid || FirstName.pristine" class="alert alert-danger"> FirstName is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="LastName">LastName</label>
+        <input id="LastName" class="form-control" [(ngModel)]="person.LastName" name="LastName" #LastName="ngModel">
+        <div [hidden]="LastName.valid || LastName.pristine" class="alert alert-danger"> LastName is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="Birthday">BirthDay</label>
+        <div class="form-group form-inline">
+          <div class="input-group">
+            <input class="form-control" placeholder="dd-MM-yyyy" name="dp" [(ngModel)]="person.Birthday" ngbDatepicker #d="ngbDatepicker">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
+                <img src="../../favicon.ico" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <hr/>
+        <pre>Day: {{person.Birthday | json }}</pre>
+      </div>
+
+      <div class="form-group">
+        <label for="Sex">Sex</label>
+        <select class="form-control" id="Sex" [(ngModel)]="person.Sex" name="Sex" #Sex="ngModel">
+          <option *ngFor="let item of genders" [value]="item">{{item}}</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="Address">Address</label>
+        <input id="Address" class="form-control" [(ngModel)]="person.Address" name="Address" #Address="ngModel">
+        <div [hidden]="Address.valid || Address.pristine" class="alert alert-danger"> Address is required
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!personForm.form.valid">Save</button>
+      <button type="button" class="btn btn-default" (click)="personForm.reset()">Cancel</button>
+      <button (click)="goBack()" class="btn btn-info">Back</button>
+    </form>
+  </div>
+</div>

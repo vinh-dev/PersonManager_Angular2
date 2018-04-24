@@ -4,25 +4,28 @@ import { RouterModule, Routes } from "@angular/router";
 
 import { CommonModule } from '@angular/common';
 import { ListPersonComponent } from "./list-person/list-person.component";
+import { PersonDetailComponent } from "./person-detail/person-detail.component";
+
+
 const routes: Routes = [
   // default is dashbroard
   {
    path: '',
-   redirectTo: '/person',
+   redirectTo: '/lst-person',
    pathMatch: 'full'
  },
  {
-   path: 'person',
+   path: 'lst-person',
    component: ListPersonComponent
  },
 //  {
 //    path: 'dashboard',
 //    component: DashboardComponent
 //  },
-//  {
-//    path: 'detail/:id',
-//    component: HeroDetailComponent
-//  },
+ {
+   path: 'detail/:id',
+   component: PersonDetailComponent
+ },
 
 ];
 

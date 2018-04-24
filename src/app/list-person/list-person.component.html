@@ -1,26 +1,36 @@
-<p>
-  list-person works!
+<p style="text-align: center;color: crimson;">
+  <app-messages></app-messages>
 </p>
-<table class="listperson">
-  <tr>
-    <th>FirstName</th>
-    <th>LastName</th>
-    <th>Birthday</th>
-    <th>Address</th>
-    <th>Sex</th>
-    <th>Edit</th>
-    <th>Delete</th>
-  </tr>
-  <tr *ngFor="let person of lstPerson">
-    <td>{{person.FirstName}}</td>
-    <td>{{person.LastName}}</td>
-    <td>{{person.Birthday}}</td>
-    <td>{{person.Address}}</td>
-    <td>{{person.Sex}}</td>
-    <td><button class="edit" title="edit Person" (click)="edit(person)">edit</button>
-    </td>
-    <td><button class="delete" title="delete Person" (click)="delete(person)">x</button>
-    </td>
+<div class="container">
+    <a routerLink="/detail/0" style="float: right;" class="btn btn-success">Add Person
+    </a>
+  <div class="table-responsive">
+    <table class="table listperson table-bordered">
+      <thead>
+        <tr>
+          <th>FirstName</th>
+          <th>LastName</th>
+          <th>Birthday</th>
+          <th>Address</th>
+          <th>Sex</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let person of lstPerson">
+          <td>{{person.FirstName}}</td>
+          <td>{{person.LastName}}</td>
+          <td>{{person.Birthday | date:'dd-MM-yyyy'}}</td>
+          <td>{{person.Address}}</td>
+          <td>{{person.Sex}}</td>
+          <td style="text-align: center">
+            <!-- <button class="edit" title="edit Person" (click)="edit(person)">!</button> -->
+            <a routerLink="/detail/{{person.id}}" style="width: 1.2rem; height: 2rem; cursor: pointer;" class="btn btn-info">!
+            </a>
+            <button class="btn btn-danger" style="width: 1.2rem; height: 2rem; cursor: pointer;" title="delete Person" (click)="delete(person)">x</button>
+          </td>
 
-  </tr>
-</table>
+      </tbody>
+    </table>
+  </div>
+</div>
