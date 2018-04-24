@@ -22,17 +22,18 @@
         <label for="Birthday">BirthDay</label>
         <div class="form-group form-inline">
           <div class="input-group">
-            <input class="form-control" placeholder="dd-MM-yyyy" name="dp" [(ngModel)]="person.Birthday" ngbDatepicker #d="ngbDatepicker">
+            <input class="form-control" placeholder="dd-MM-yyyy" name="dp" [(ngModel)]="person.Birthday2" ngbDatepicker #d="ngbDatepicker">
             <div class="input-group-append">
               <button class="btn btn-outline-secondary" (click)="d.toggle()" type="button">
-                <img src="../../favicon.ico" style="width: 1.2rem; height: 1rem; cursor: pointer;" />
+                <!-- <img src="../../favicon.ico" style="width: 1.2rem; height: 1rem; cursor: pointer;" /> -->
+                <span class="glyphicon glyphicon-calendar"></span>
               </button>
             </div>
           </div>
         </div>
 
         <hr/>
-        <pre>Day: {{person.Birthday | json }}</pre>
+        <pre>Day: {{person.Birthday2 | json }}</pre>
       </div>
 
       <div class="form-group">
@@ -55,3 +56,6 @@
     </form>
   </div>
 </div>
+<p>Envelope icon as a link:
+    <a href="#"> <span class="glyphicon glyphicon-calendar"></span></a>
+  </p>

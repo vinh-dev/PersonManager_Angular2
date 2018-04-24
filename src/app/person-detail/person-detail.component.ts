@@ -11,9 +11,9 @@ import { PersonService } from "../person.service";
 })
 export class PersonDetailComponent implements OnInit {
 
-  @Input() person : Person
+  @Input() person: Person
   genders = ['Nam', 'Nữ', 'Khác'];
-  model = { "year": "2017", "month": "2", "day": "25" };
+
   constructor(
     private route: ActivatedRoute,
     private personService: PersonService,
@@ -24,17 +24,20 @@ export class PersonDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPerson();
-    console.log(this.model.day);
-    console.log(this.model.month);
-    console.log(this.model.year);
   }
   getPerson(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id === 0) {
+      this.person=null;
       return;
     }
     else {
-      this.personService.getPerson(id).subscribe(person=> this.person = person);
+      this.personService.getPerson(id).subscribe(person => {
+
+        person.Birthday = new Date(person.Birthday);
+        this.person = person;
+        this.person.Birthday2 = { year: person.Birthday.getFullYear(), month: person.Birthday.getMonth()+1, day: person.Birthday.getDate() };
+      });
     }
   }
 
@@ -42,9 +45,11 @@ export class PersonDetailComponent implements OnInit {
     this.location.back();
   }
   onSubmit(): void {
-    this.personService.updatePerson(this.person)
-    .subscribe(() => this.goBack());
-  console.log(this.person.Birthday);
-  };
+    Object.keys(this.person.Birthday2).map(k => this.person.Birthday =
+      new Date(this.person.Birthday2["month"]+"-"+this.person.Birthday2["day"]+"-"+this.person.Birthday2["year"] ))
+
+    //this.person.Birthday=this.person.Birthday2.valu
+    this.personService.updatePerson(this.person).subscribe(() => this.goBack());
+   };
 
 }

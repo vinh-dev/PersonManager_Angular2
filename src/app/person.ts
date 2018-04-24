@@ -2,12 +2,9 @@ export class Person {
   id: number;
   FirstName: string;
   LastName:string;
-  Birthday:DateTimeFormat;
+  Birthday: Date;
+  Birthday2: any;
   Address: string;
   Sex:string;
+
 }
-// interface CalendarDateItem {
-//   day: number;
-//   month: number;
-//   year: number;
-// }

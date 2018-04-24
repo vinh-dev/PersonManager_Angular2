@@ -23,8 +23,9 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
     ListPersonComponent,
     MessagesComponent,
     PersonSearchComponent,
-    PersonDetailComponent
+    PersonDetailComponent,
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
@@ -39,10 +40,12 @@ import { PersonDetailComponent } from './person-detail/person-detail.component';
     NgbModule.forRoot(),
 
   ],
+
   providers: [
     PersonService,
     MessageService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
 })
 export class AppModule { }
