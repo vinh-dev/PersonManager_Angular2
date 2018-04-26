@@ -3,7 +3,6 @@ export class Person {
   FirstName: string;
   LastName:string;
   Birthday: Date;
-  Birthday2: any;
   Address: string;
   Sex:string;
 

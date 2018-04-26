@@ -2,8 +2,11 @@
   <app-messages></app-messages>
 </p>
 <div class="container">
-    <a routerLink="/detail/0" style="float: right;" class="btn btn-success">Add Person
-    </a>
+  <div class="mb-3">
+    <app-person-search></app-person-search>
+  </div>
+  <a routerLink="/detail/0" style="float: right;" class="btn btn-success">Add Person
+  </a>
   <div class="table-responsive">
     <table class="table listperson table-bordered">
       <thead>
@@ -17,19 +20,19 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let person of lstPerson">
+        <tr *ngFor="let person of  lstPerson">
           <td>{{person.FirstName}}</td>
           <td>{{person.LastName}}</td>
           <td>{{person.Birthday | date:'dd-MM-yyyy'}}</td>
           <td>{{person.Address}}</td>
           <td>{{person.Sex}}</td>
           <td style="text-align: center">
-            <!-- <button class="edit" title="edit Person" (click)="edit(person)">!</button> -->
-            <a routerLink="/detail/{{person.id}}" style="width: 1.2rem; height: 2rem; cursor: pointer;" class="btn btn-info">!
+
+            <a routerLink="/detail/{{person.id}}" style="width: 1.2rem; height: 2rem; cursor: pointer;" title="edit Person" class="btn btn-info">!
             </a>
             <button class="btn btn-danger" style="width: 1.2rem; height: 2rem; cursor: pointer;" title="delete Person" (click)="delete(person)">x</button>
           </td>
-
+        </tr>
       </tbody>
     </table>
   </div>

@@ -10,16 +10,7 @@ import { MessageService } from "./message.service";
 
 @Injectable()
 export class PersonService {
-  getLstPerson(): Observable<Person[]> {
 
-    // TODO: send the message_after_fetching the lstPerson
-    //return of(PersonES);//function to return an array of mock lstPerson as an Observable<Person[]>.
-    return this.http.get<Person[]>(this.PersonesUrl)
-      .pipe(
-        tap(lstPerson => this.log(`fetched lstPerson`)),
-        catchError(this.handleError('getLstPerson', []))
-      );
-  }
 
   constructor(
     private http: HttpClient,
@@ -29,7 +20,7 @@ export class PersonService {
 
   /** Log a PersonService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('Throw message: ' + message);
+      this.messageService.add('Message: ' + message);
   }
 
   private PersonesUrl = 'api/lstPerson';// URL to the web api
@@ -55,7 +46,15 @@ export class PersonService {
   }
 
 
-
+  getLstPerson(): Observable<Person[]> {
+    // TODO: send the message_after_fetching the lstPerson
+    //return of(PersonES);//function to return an array of mock lstPerson as an Observable<Person[]>.
+    return this.http.get<Person[]>(this.PersonesUrl)
+      .pipe(
+        tap(lstPerson => this.log(`fetched lstPerson`)),
+        catchError(this.handleError('getLstPerson', []))
+      );
+  }
 
 
   getPerson(id: number): Observable<Person> {
@@ -69,15 +68,15 @@ export class PersonService {
 
   updatePerson(Person: Person): Observable<any> {
     return this.http.put(this.PersonesUrl, Person, httpOptions).pipe(
-      tap(_ => this.log(` call function updatePerson id = ${Person.id}`)),
+      tap(_ => this.log(` updatePerson id = ${Person.id}`)),
       catchError(this.handleError<any>('updatePerson'))
     );
 
   }
-
+ /** ADD: add the Person into the server */
   addPerson(Person: Person): Observable<Person> {
     return this.http.post<Person>(this.PersonesUrl, Person, httpOptions).pipe(
-      tap((Person: Person) => this.log(`call function addePerson id=${Person.id}`)),
+      tap((Person: Person) => this.log(`addPerson id=${Person.id}`)),
       catchError(this.handleError<Person>('addPerson'))
     );
   }
@@ -86,9 +85,8 @@ export class PersonService {
   deletePerson(Person: Person | number): Observable<Person> {
     const id = typeof Person === 'number' ? Person : Person.id;
     const url = `${this.PersonesUrl}/${id}`;
-
     return this.http.delete<Person>(url, httpOptions).pipe(
-      tap(_ => this.log(`call function deletePerson id=${id}`)),
+      tap(_ => this.log(`deletePerson id=${id}`)),
       catchError(this.handleError<Person>('deletePerson'))
     );
   }
@@ -101,13 +99,11 @@ export class PersonService {
       // if nor search term return empty Person array
       return of([]);
     }
-
-    return this.http.get<Person[]>(`api/lstPerson/?name=${term}`).pipe(
-      tap(_ => this.log(`call function searchPersones matching${term}`)),
-      catchError(this.handleError<Person[]>('serchPersones', []))
+    return this.http.get<Person[]>(`api/lstPerson/?FirstName=${term}`).pipe(
+      tap(_ => this.log(`searchPerson matching: ${term}`)),
+      catchError(this.handleError<Person[]>('searchPersones', []))
     );
   }
-
 }
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

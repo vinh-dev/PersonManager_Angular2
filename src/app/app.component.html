@@ -1,11 +1,12 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-   {{ title }}
-  </h1>
+<div class="container">
+  <div style="text-align:center">
+    <h1>
+      {{ title }}
+    </h1>
+  </div>
+  <nav style="text-align: center">
+    <a routerLink="/lst-person" class="btn btn-info">List Persons</a>
+  </nav>
+  <router-outlet></router-outlet>
 </div>
-<nav  style="text-align: center">
-  <a routerLink="/lst-person" >List Persons</a>
-
-</nav>
-<router-outlet></router-outlet><!-- thay cho the app-heroes-->

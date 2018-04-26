@@ -4,10 +4,10 @@ import { InMemoryDbService } from "angular-in-memory-web-api";
 
 @Injectable()
 export class InMemoryDataService implements InMemoryDbService {
-
+/**Khoi tao lai phuong thuc tao db của abtract InMemoryDbService */
   createDb() {
     const lstPerson = [
-      { id: 1, FirstName: 'Eleven', LastName: '11', Birthday: '11-02-2012', Address: 'HaNoi', Sex: 'Nam' },
+      { id: 1, FirstName: 'Eleven', LastName: '11', Birthday: '11-02-2012', Address: 'Hà Nội', Sex: 'Nam' },
       { id: 2, FirstName: 'Twelve', LastName: '12', Birthday: '11-10-2012', Address: 'Hà nam', Sex: 'Nữ' },
       { id: 3, FirstName: 'Thirteen', LastName: '13', Birthday: '11-22-2012', Address: 'Hải Phòng', Sex: 'Nữ' },
       { id: 4, FirstName: 'FourTeen', LastName: '14', Birthday: '11-10-2012', Address: 'Thái Bình', Sex: 'Nam' },
