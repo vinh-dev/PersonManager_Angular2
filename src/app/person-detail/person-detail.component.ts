@@ -14,14 +14,11 @@ export class PersonDetailComponent implements OnInit {
   @Input() person: Person
   genders = ['Nam', 'Nữ', 'Khác'];
   convertBirthday: any;
-  personAdd: Person;
-
   constructor(
     private route: ActivatedRoute,
     private personService: PersonService,
     private location: Location,
   ) { }
-
   ngOnInit(): void {
     this.getPerson();
   };
@@ -29,8 +26,7 @@ export class PersonDetailComponent implements OnInit {
   getPerson(): void {
     const id = +this.route.snapshot.paramMap.get('id');
     if (id === 0) {
-      this.personAdd={id:20,FirstName:"",Address:"",Birthday:new Date(),LastName:"",Sex:""}
-      this.person = this.personAdd;
+      this.person = { id: null, FirstName: "", Address: "", Birthday: new Date(), LastName: "", Sex: "" }
       this.convertBirthday = { year: new Date().getFullYear(), month: new Date().getMonth() + 1, day: new Date().getDate() };
     }
     else {
@@ -47,19 +43,23 @@ export class PersonDetailComponent implements OnInit {
     this.location.back();
   }
   /**ADD: add person into list */
-  add(name:string):void{
-    name= name.trim();
-    if(!name){return;}
-    this.personService.addPerson({name}as Person)
-    .subscribe(per => {this.heroes.push(per);
-    });
+   add(person: Person): void {
+    person.FirstName = person.FirstName.trim();
+    person.LastName = person.LastName.trim();
+    this.personService.addPerson(person)
+      .subscribe(per => { this.goBack(); });
   }
   /**Submit form */
   onSubmit(): void {
+    const id = +this.route.snapshot.paramMap.get('id');
     Object.keys(this.convertBirthday).map(k => this.person.Birthday =
       new Date(this.convertBirthday["month"] + "-" + this.convertBirthday["day"] + "-" + this.convertBirthday["year"]));
-
-    this.personService.updatePerson(this.person).subscribe(() => this.goBack());
+    if (id === 0) {
+     this.add(this.person);
+    }
+    else {
+      this.personService.updatePerson(this.person).subscribe(() => this.goBack());
+    }
   };
 
 }
