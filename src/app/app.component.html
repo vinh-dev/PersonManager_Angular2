@@ -5,8 +5,11 @@
       {{ title }}
     </h1>
   </div>
+
   <nav style="text-align: center">
     <a routerLink="/lst-person" class="btn btn-info">List Persons</a>
+    <a routerLink="/dx-lstperson" class="btn btn-info">List Persons- DE</a>
+    <dx-button [text]="buttonText" (onClick)="showAlert()"></dx-button>
   </nav>
   <router-outlet></router-outlet>
 </div>

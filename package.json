@@ -25,6 +25,8 @@
     "angular-in-memory-web-api": "^0.5.4",
     "bootstrap": "^4.1.0",
     "core-js": "^2.4.1",
+    "devextreme": "^17.2.7",
+    "devextreme-angular": "^17.2.7",
     "jquery": "^3.3.1",
     "ng2-datepicker-bootstrap": "^1.0.0",
     "rxjs": "^5.5.6",
